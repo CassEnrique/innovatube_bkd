@@ -106,7 +106,7 @@ func Update(c *fiber.Ctx, db *gorm.DB) interface{} {
 		}
 	}
 
-	db.Model(&favorite).Where("pk_ = ?", patching.Pk).Update(patching.Key, patching.Value)
+	db.Model(&favorite).Where("pk_favorite = ?", patching.Pk).Update(patching.Key, patching.Value)
 
 	return fiber.Map{
 		"code": 200,

@@ -6,6 +6,8 @@ import (
 
 	"github.com/backend/config"
 	"github.com/backend/routes/favorites"
+	"github.com/backend/routes/login"
+	"github.com/backend/routes/users"
 	jwtware "github.com/gofiber/contrib/jwt"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
@@ -28,6 +30,8 @@ func InitRoutes(f *fiber.App, db *gorm.DB) {
 	health(f)
 
 	favorites.InitFavoriteRoutes(app, db)
+	login.InitLoginRoutes(app, db)
+	users.InitUserRoutes(app, db)
 
 	f.Use(jwtware.New(jwtware.Config{
 		SigningKey: jwtware.SigningKey{Key: []byte(config.JwtSecretKey())},
